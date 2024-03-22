@@ -71,7 +71,6 @@ public class PrestitoDao {
         TypedQuery<Prestito> queryDisp = em.createQuery("SELECT d FROM Prestito d WHERE d.tessera = :tessera AND d.dataRestituzioneEffettiva IS NULL", Prestito.class);
         queryDisp.setParameter("tessera", tessera);
         List<Prestito> elementiInPrestito = queryDisp.getResultList();
-        System.out.println("ELEMENTO IN PRESTITO : "+ elementiInPrestito);
         return elementiInPrestito ;
     }
 

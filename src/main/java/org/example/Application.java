@@ -30,9 +30,10 @@ public class Application {
         System.out.println("1: Aggiungi Libro");
         System.out.println("2: Aggiungi Riviste");
         System.out.println("3: Ricerca per ISBN");
-        System.out.println("4: Aggiungi Prestito");
-        System.out.println("5: Controlla Prestiti Scaduti");
-        System.out.println("6: Controlla Prestiti Scaduti Utente");
+        System.out.println("4: Elimina elemento");
+        System.out.println("5: Aggiungi Prestito");
+        System.out.println("6: Controlla Prestiti Scaduti");
+        System.out.println("7: Controlla Prestiti Scaduti Utente");
 
         int tipo = Integer.parseInt(scanner.nextLine());
         switch (tipo) {
@@ -105,6 +106,15 @@ public class Application {
                 break;
 
             case 4:
+
+                System.out.println("INSERISCI IL CODICE ISBN DA ELIMINARE: ");
+                String isbnE = scanner.nextLine();
+
+                cd.findElementoByIsbnDelete(UUID.fromString(isbnE));
+
+                break;
+
+            case 5:
                 try{
                 System.out.println("INSERISCI IL CODICE ISBN: ");
                 String isbnPrestito = scanner.nextLine();
@@ -129,9 +139,21 @@ public class Application {
 
                 break;
 
+            case 6:
+                System.out.println("Prestiti scaduti: "+   prestito.elementiScaduti());
 
-            case 5:
-                System.out.println("Uscita dal programma.");
+
+                break;
+
+            case 7:
+
+                System.out.println("Inserisci la tessera: ");
+                String tessera = scanner.nextLine();
+                System.out.println("PRESTITO SCADUTO: " + prestito.checkElementiInPrestito(tessera));
+
+                break;
+            case 8:
+                System.out.println("ARRIVEDERCI");
                 break;
 
             default:
