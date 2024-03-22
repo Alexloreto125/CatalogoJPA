@@ -7,6 +7,9 @@ import org.example.entities.Libri;
 import org.example.entities.Periodicita;
 import org.example.entities.Riviste;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CatalogoDAO {
     private EntityManager em;
 
@@ -15,7 +18,9 @@ public class CatalogoDAO {
 
     }
 
+
     public void save(CollezioneEditoriale elemento){
+
         try {
             EntityTransaction transaction = em.getTransaction();
 
@@ -26,11 +31,13 @@ public class CatalogoDAO {
 
             if (elemento instanceof Libri){
                 Libri libro= (Libri) elemento;
-            System.out.println(libro.getTitolo()+ " "+ libro.getAutore()+ " con tessera "+ libro.getGenere());
+            System.out.println(libro.getTitolo()+ " "+ libro.getAutore()+ " genere "+ libro.getGenere());
             }else if (elemento instanceof Riviste){
                 Riviste riviste= (Riviste) elemento;
             System.out.println(elemento.getTitolo()+ " "+elemento.getNumberOfPages() +" "+ ((Riviste) elemento).getPeriodicita() );
             }
+
+
 
 
         }catch (Exception e){
