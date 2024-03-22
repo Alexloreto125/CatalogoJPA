@@ -30,10 +30,13 @@ public class Application {
         System.out.println("1: Aggiungi Libro");
         System.out.println("2: Aggiungi Riviste");
         System.out.println("3: Ricerca per ISBN");
-        System.out.println("4: Elimina elemento");
-        System.out.println("5: Aggiungi Prestito");
-        System.out.println("6: Controlla Prestiti Scaduti");
-        System.out.println("7: Controlla Prestiti Scaduti Utente");
+        System.out.println("4: Ricerca per Anno");
+        System.out.println("5: Ricerca per Titolo");
+        System.out.println("6: Ricerca per Autore");
+        System.out.println("7: Elimina elemento");
+        System.out.println("8: Aggiungi Prestito");
+        System.out.println("9: Controlla Prestiti Scaduti");
+        System.out.println("10: Controlla Prestiti Scaduti Utente");
 
         int tipo = Integer.parseInt(scanner.nextLine());
         switch (tipo) {
@@ -107,6 +110,34 @@ public class Application {
 
             case 4:
 
+                System.out.println("INSERISCI L'ANNO DI PUBBLICAZIONE");
+                int anno= Integer.parseInt(scanner.nextLine());
+
+                System.out.println("RICERCA IN BASO ALL'ANNO: "+ anno+ " ->"+ cd.findByAnno(anno));
+
+
+
+                break;
+            case 5:
+                System.out.println("INSERISCI IL TITOLO");
+                String titoloS= scanner.nextLine();
+
+                System.out.println("RICERCA IN BASO AL TITOLO: "+ titoloS+ " ->"+ cd.findByNameStartsWith(titoloS));
+
+
+
+                break;
+//            case 6:
+//                System.out.println("INSERISCI L'AUTORE");
+//                String autoreS= scanner.nextLine();
+//
+//                System.out.println("RICERCA IN BASO ALL'AUTORE: "+ autoreS+ " ->"+ (cd.findByAutore(autoreS)));
+//
+//
+//                break;
+
+            case 7:
+
                 System.out.println("INSERISCI IL CODICE ISBN DA ELIMINARE: ");
                 String isbnE = scanner.nextLine();
 
@@ -114,7 +145,7 @@ public class Application {
 
                 break;
 
-            case 5:
+            case 8:
                 try{
                 System.out.println("INSERISCI IL CODICE ISBN: ");
                 String isbnPrestito = scanner.nextLine();
@@ -139,20 +170,20 @@ public class Application {
 
                 break;
 
-            case 6:
+            case 9:
                 System.out.println("Prestiti scaduti: "+   prestito.elementiScaduti());
 
 
                 break;
 
-            case 7:
+            case 10:
 
                 System.out.println("Inserisci la tessera: ");
                 String tessera = scanner.nextLine();
                 System.out.println("PRESTITO SCADUTO: " + prestito.checkElementiInPrestito(tessera));
 
                 break;
-            case 8:
+            case 11:
                 System.out.println("ARRIVEDERCI");
                 break;
 

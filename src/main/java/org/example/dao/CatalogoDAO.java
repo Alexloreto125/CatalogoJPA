@@ -3,14 +3,15 @@ package org.example.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import org.example.entities.CollezioneEditoriale;
 import org.example.entities.Libri;
-import org.example.entities.Periodicita;
 import org.example.entities.Riviste;
 import org.example.exceptions.NotFoundException;
+import org.example.exceptions.NotFoundExceptionAutore;
+import org.example.exceptions.NotFoundExceptionYear;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.UUID;
 
 public class CatalogoDAO {
@@ -70,10 +71,38 @@ public class CatalogoDAO {
 
     }
 
+    public CollezioneEditoriale findByAnno(Integer yearOfPublication){
+        TypedQuery<CollezioneEditoriale> query = em.createQuery("SELECT e FROM CollezioneEditoriale e WHERE e.yearOfPublication = :year", CollezioneEditoriale.class);
+        query.setParameter("year", yearOfPublication);
+        List<CollezioneEditoriale> resultList = query.getResultList();
+        if (resultList.isEmpty()) {
+            throw new NotFoundExceptionYear(yearOfPublication);
+        }
+        return resultList.get(0);
+//        return em.find(Libri.class, isbn);
+
+    }
 
 
+    public List<CollezioneEditoriale> findByAutore(String autore){
+        TypedQuery<CollezioneEditoriale> query = em.createQuery("findByAutore", CollezioneEditoriale.class);
+        query.setParameter("autore",autore);
+        return query.getResultList();
+    }
 
 
-
-
+    public List<CollezioneEditoriale> findByNameStartsWith(String partialName){
+        TypedQuery<CollezioneEditoriale> query = em.createQuery("SELECT a FROM CollezioneEditoriale a WHERE LOWER(a.titolo) LIKE LOWER(:partialName)", CollezioneEditoriale.class);
+        // LOWER ci consente di emulare il comportamento dell'ILIKE
+        query.setParameter("partialName", partialName + "%");
+        return query.getResultList();
+    }
 }
+
+
+
+
+
+
+
+
