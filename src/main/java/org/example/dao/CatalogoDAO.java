@@ -6,6 +6,7 @@ import org.example.entities.CollezioneEditoriale;
 import org.example.entities.Libri;
 import org.example.entities.Periodicita;
 import org.example.entities.Riviste;
+import org.example.exceptions.NotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,9 +49,14 @@ public class CatalogoDAO {
 
     public CollezioneEditoriale findByIsbn(UUID isbn){
 
-        return em.find(Libri.class, isbn);
+        CollezioneEditoriale elemento = em.find(CollezioneEditoriale.class, isbn);
+        if(elemento == null) throw new NotFoundException(isbn);
+        return elemento;
+//        return em.find(Libri.class, isbn);
 
     }
+
+
 
 
 }

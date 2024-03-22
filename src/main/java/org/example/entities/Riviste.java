@@ -23,6 +23,9 @@ public class Riviste extends CollezioneEditoriale {
     }
 
 
+    public Riviste(){
+
+    }
     @Override
     public String toString() {
         return "Riviste{" +
