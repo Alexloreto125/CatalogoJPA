@@ -28,6 +28,9 @@ public abstract class CollezioneEditoriale {
         this.yearOfPublication = yearOfPublication;
     }
 
+    public CollezioneEditoriale() {
+
+    }
 
 
     public UUID getIsbn() {

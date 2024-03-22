@@ -9,6 +9,7 @@ import org.example.entities.Riviste;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class CatalogoDAO {
     private EntityManager em;
@@ -43,6 +44,12 @@ public class CatalogoDAO {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public CollezioneEditoriale findByIsbn(UUID isbn){
+
+        return em.find(Libri.class, isbn);
+
     }
 
 

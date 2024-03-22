@@ -6,12 +6,10 @@ import jakarta.persistence.Persistence;
 import org.example.dao.CatalogoDAO;
 import org.example.dao.LibriDao;
 import org.example.dao.UtenteDao;
-import org.example.entities.Libri;
-import org.example.entities.Periodicita;
-import org.example.entities.Riviste;
-import org.example.entities.Utente;
+import org.example.entities.*;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Application {
 
@@ -25,8 +23,9 @@ public class Application {
         System.out.println("Aggiungi elemento");
 
         System.out.println("Tipo :");
-        System.out.println("1: Libro");
-        System.out.println("2: Riviste");
+        System.out.println("1: Aggiungi Libro");
+        System.out.println("2: Aggiungi Riviste");
+        System.out.println("3: Ricerca per ISBN");
 
         int tipo = Integer.parseInt(scanner.nextLine());
         switch (tipo) {
@@ -89,6 +88,16 @@ public class Application {
                 break;
 
             case 3:
+
+                System.out.println("INSERISCI IL CODICE ISBN: ");
+                String isbn = scanner.nextLine();
+
+                System.out.println("ELEMENTO CON ISBN: "+cd.findByIsbn(UUID.fromString(isbn)));
+
+
+                break;
+
+                case 4:
                 System.out.println("Uscita dal programma.");
                 break;
 
@@ -97,8 +106,21 @@ public class Application {
         }
         while (tipo != 3) ;
 
+
+
+
+
+
+
+
+
+
         System.out.println("EGFFE");
     }
+
+
+
+
 
 }
 

@@ -13,11 +13,19 @@ public class Libri extends CollezioneEditoriale {
     public String autore;
     public String genere;
 
-    public Libri(String titolo, String genere, String autore,int numberOfPages, int yearOfPublication) {
+
+    public Libri(){
+        super();
+
+    }
+    public Libri(String titolo, String genere, String autore, int numberOfPages, int yearOfPublication) {
         super(titolo, numberOfPages, yearOfPublication);
         this.autore = autore;
         this.genere = genere;
     }
+
+
+
 
     @Override
     public String toString() {
